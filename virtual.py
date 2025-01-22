@@ -15,7 +15,7 @@ def create_and_activate_virtualenv():
     subprocess.check_call([os.path.join(env_name, 'Scripts', 'pip.exe'), 'install', 'opencv-python'])
 
     # Activate the virtual environment (Windows-specific)
-    activate_script = os.path.join(env_name, 'Scripts', 'activate.bat')
+    activate_script = os.path.join(env_name, 'Scripts', 'activate')
     print(f"To activate your virtual environment, run: {activate_script}")
     print("Note: Activation script is not executable directly through Python. Please activate it manually via the command line.")
 

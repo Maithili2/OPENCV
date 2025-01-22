@@ -1,4 +1,4 @@
 till parac 5 done...
 
 
-git add maine 
+git add maine isbar maine khud kiya

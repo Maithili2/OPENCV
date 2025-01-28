@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import os
+import random
 
 # Define the path to the image
 image_path = os.path.join(os.getcwd(), 'images', 'img1.jpg')
@@ -26,9 +27,24 @@ rows, cols = image.shape
 rotation_matrix = cv2.getRotationMatrix2D((cols / 2, rows / 2), 45, 1)
 affine_transformed_image = cv2.warpAffine(image, rotation_matrix, (cols, rows))
 
-# 4. Cropping (ensure valid crop indices)
-start_row, end_row = 100, min(300, rows)  # Ensure indices are within bounds
-start_col, end_col = 200, min(400, cols)
+# 4. Random Cropping (without manually specifying crop indices)
+crop_height = 200  # Crop height
+crop_width = 200   # Crop width
+
+# Ensure the crop size does not exceed image dimensions
+if crop_height > rows or crop_width > cols:
+    print("Error: Crop size is larger than image dimensions.")
+    exit(1)
+
+# Generate random start row and column within the valid range
+start_row = random.randint(0, rows - crop_height)
+start_col = random.randint(0, cols - crop_width)
+
+# Calculate the end row and column based on the start position and crop size
+end_row = start_row + crop_height
+end_col = start_col + crop_width
+
+# Crop the image
 cropped_image = image[start_row:end_row, start_col:end_col]
 
 # Display the transformed images
